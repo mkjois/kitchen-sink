@@ -29,6 +29,22 @@ routes =
         res.sendStatus 501
 
 
+  '/mock/:id':
+
+    get:
+      handler: (req, res) ->
+        res.sendStatus 501
+
+
+  '/mock/':
+
+    post:
+      handler: (req, res) ->
+        options = req.body.Options
+        json = req.body.JSON
+        res.sendStatus 501
+
+
 if module?
   module.exports =
     aws: aws

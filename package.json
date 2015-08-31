@@ -35,6 +35,7 @@
   "homepage": "https://github.com/mkjois/mockery#readme",
   "dependencies": {
     "aws-sdk": "^2.1.48",
+    "base64url": "^1.0.4",
     "body-parser": "^1.13.3",
     "express": "^4.13.3"
   },
