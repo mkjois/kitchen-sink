@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+lib
+
+tmp
+*.tmp
+tmp.*
+
+*.swp
+*.swo
+.*.swp
+.*.swo
+*.pyc
+*.pyd

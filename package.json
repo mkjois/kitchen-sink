@@ -1,0 +1,46 @@
+{
+  "name": "mockery",
+  "version": "1.0.0",
+  "description": "Mock shit thru dis API",
+  "main": "lib/server.js",
+  "scripts": {
+    "build": "coffee -c -o lib src",
+    "buildtest": "coffee -c -o lib/test src/test",
+    "clean": "rm -rf lib",
+    "cleantest": "rm -rf lib/test",
+    "prestart": "npm stop && npm run-script build",
+    "start": "node lib/server.js &",
+    "ping": "curl -s -w '\n' http://localhost:5056/ping",
+    "pretest": "npm run-script buildtest && npm start",
+    "test": "mocha lib/test/**/*.js || :",
+    "posttest": "npm stop",
+    "stop": "pkill --signal SIGINT NODE_MOCKERY || :"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mkjois/mockery.git"
+  },
+  "keywords": [
+    "mock",
+    "mocking",
+    "api",
+    "framework",
+    "json"
+  ],
+  "author": "Manny Jois",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mkjois/mockery/issues"
+  },
+  "homepage": "https://github.com/mkjois/mockery#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1.48",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "mocha": "^2.3.0",
+    "supertest": "^1.1.0"
+  }
+}
