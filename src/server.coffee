@@ -32,7 +32,7 @@ app.use (req, res, next) ->
   next()
 
 # Middleware initializers
-app.use bodyParser.json()
+app.use bodyParser.json limit: api.config.app.limits.json
 
 # Set up all route middleware and handlers
 for url, methods of api.routes
