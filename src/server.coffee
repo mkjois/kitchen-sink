@@ -3,48 +3,44 @@
 # Node modules
 bodyParser = require 'body-parser'
 express = require 'express'
-fs = require 'fs'
 http = require 'http'
 https = require 'https'
 
-# U/page modules
-api = require './api'
+# Kitchen Sink modules
+config = require './config'
+middleware = require './middleware'
+routes = require './routes'
+
+# Routers
+jmoc = require './jmoc'
 
 # Important for process termination on failures
-process.title = api.config.proc.title
+process.title = config.proc.title
 
 # Initialize app and settings
 app = express()
-for setting in api.config.app.enable
+for setting in config.app.enable
   app.enable setting
 
-# Redirect http to https
-app.use (req, res, next) ->
-  if not req.secure and req.hostname isnt 'localhost'
-    host = req.get 'host'
-    res.redirect 308, "https://#{ host }#{ req.originalUrl }"
-  else
-    next()
+# Initialize middleware
+app.use middleware.httpsRedirect
 
-# Set Access-Control-* headers
-app.use (req, res, next) ->
-  res.set api.config.app.access
-  next()
-
-# Middleware initializers
-app.use bodyParser.json limit: api.config.app.limits.json
+# Mount routers
+app.use '/jmoc', jmoc
 
 # Set up all route middleware and handlers
-for url, methods of api.routes
+for url, methods of routes
   for method, route  of methods
     if route.hasOwnProperty 'middleware'
       route.middleware.forEach (mw) ->
         app[method] url, mw
     app[method] url, route.handler
 
+# Create HTTP[S] servers
 httpServer = http.createServer app
-httpPort = api.config.proc.port.http
+httpPort = config.proc.port.http
 
+# Custom termination handling
 dieWithHonor = () ->
   die = (err) ->
     if err
@@ -54,7 +50,9 @@ dieWithHonor = () ->
       process.exit 0
   httpServer.close die
 
+# Register termination handler
 process.on 'SIGINT', dieWithHonor
 process.on 'SIGTERM', dieWithHonor
 
+# Listen
 httpServer.listen httpPort
