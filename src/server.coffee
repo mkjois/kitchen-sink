@@ -4,6 +4,7 @@
 bodyParser = require 'body-parser'
 express = require 'express'
 http = require 'http'
+path = require 'path'
 
 # Kitchen Sink modules
 config = require './config'
@@ -31,6 +32,9 @@ for url, methods of routes
       route.middleware.forEach (mw) ->
         app[method] url, mw
     app[method] url, route.handler
+
+# Static middleware
+app.use '/static', middleware.httpsRedirect, express.static path.join process.cwd(), '/static'
 
 # Create HTTP[S] servers
 httpServer = http.createServer app
