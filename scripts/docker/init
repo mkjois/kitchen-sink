@@ -7,6 +7,7 @@
 
 # If /mnt/aws is mounted, then copy it to /root/.aws/credentials
 if [ -f /mnt/aws ]; then
+    mkdir -p /root/.aws
     cp /mnt/aws /root/.aws/credentials
     chmod 0400 /root/.aws/credentials
 fi
