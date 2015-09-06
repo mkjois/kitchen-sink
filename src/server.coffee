@@ -21,11 +21,8 @@ app = express()
 for setting in config.app.enable
   app.enable setting
 
-# Initialize middleware
-app.use middleware.httpsRedirect
-
 # Mount routers
-app.use '/jmoc', jmoc
+app.use '/jmoc', middleware.httpsRedirect, jmoc
 
 # Set up all route middleware and handlers
 for url, methods of routes

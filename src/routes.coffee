@@ -26,6 +26,9 @@ routes =
     get:
       handler: (req, res) ->
         res.sendStatus 501
+      middleware: [
+        middleware.httpsRedirect
+      ]
 
 
 if module?
