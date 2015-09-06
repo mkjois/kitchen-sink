@@ -8,7 +8,9 @@ dynamo = require 'dynamodb-doc'
 config = require './config'
 
 # Any required initialization
-aws.config.credentials = new aws.SharedIniFileCredentials profile: config.aws.access.profile
+localCreds = new aws.SharedIniFileCredentials profile: config.aws.access.profile
+if localCreds.accessKeyId?
+  aws.config.credentials = localCreds
 aws.config.apiVersions =
   dynamodb: config.aws.ddb.version
 aws.config.update region: config.aws.access.region
