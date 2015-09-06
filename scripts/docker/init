@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+# init <command> [<args>...]
+#
+# Custom init process (PID 1) to use when run inside a Docker container.
+# Checks for certain mounts, copies them to the appropriate places and sets permission bits.
+
+# If /mnt/aws is mounted, then copy it to /root/.aws/credentials
+if [ -f /mnt/aws ]; then
+    cp /mnt/aws /root/.aws/credentials
+    chmod 0400 /root/.aws/credentials
+fi
+
+# If /mnt/boto is mounted, then copy it to /etc/boto.cfg
+if [ -f /mnt/boto ]; then
+    cp /mnt/boto /etc/boto.cfg
+    chmod 0400 /etc/boto.cfg
+fi
+
+# Overwrite the given command into PID 1
+exec $@

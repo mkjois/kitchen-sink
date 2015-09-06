@@ -4,7 +4,6 @@
 bodyParser = require 'body-parser'
 express = require 'express'
 http = require 'http'
-https = require 'https'
 
 # Kitchen Sink modules
 config = require './config'

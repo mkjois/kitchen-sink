@@ -21,12 +21,14 @@
     "url": "git+ssh://git@github.com/mkjois/kitchen-sink.git"
   },
   "keywords": [
-    "mock",
-    "mocking",
     "api",
     "apis",
     "framework",
-    "json"
+    "json",
+    "kitchen",
+    "mock",
+    "mocking",
+    "sink"
   ],
   "author": "Manny Jois",
   "license": "MIT",

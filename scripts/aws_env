@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-KEYPAIR=$(grep -A 2 "\[$1\]" ~/.aws/credentials | tail -n 2 | cut -f 3 -d ' ')
-
-export AWS_ACCESS_KEY_ID=$(echo $KEYPAIR | cut -f 1 -d ' ')
-export AWS_SECRET_ACCESS_KEY=$(echo $KEYPAIR | cut -f 2 -d ' ')

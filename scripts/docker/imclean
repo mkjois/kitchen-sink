@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Clean up so that a docker build layer can be reduced in size
+# This script might be called at the end of a long RUN command
+# If you remove the current WORKDIR, it should be the last step
+
+apt-get autoremove -y
+apt-get clean
+apt-get autoclean
+find /var/log -type f | xargs -r truncate -s 0
+rm -rf \
+    /var/lib/apt/lists/* \
+    /var/cache/debconf/* \
+    /var/tmp/* \
+    /root/.cache \
+    /tmp/*

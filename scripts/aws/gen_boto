@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+USAGE="""aws_env <arg>\n\
+\n\
+This script greps for '[<arg>]' in ~/.aws/credentials and creates\n\
+a Boto credentials file.
+"""
+
+if [ $# = "0" ]; then
+    echo -e $USAGE
+    exit 2
+fi
+
+grep -A 2 "\[$1\]" ~/.aws/credentials | sed "s/$1/Credentials/"

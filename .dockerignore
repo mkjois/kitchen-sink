@@ -1,6 +1,12 @@
 node_modules
 npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+src
 ssl
+README.md
 
 tmp
 *.tmp
