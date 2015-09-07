@@ -31,5 +31,16 @@ routes =
       ]
 
 
+  # easter egg
+  '/youngblood':
+
+    get:
+      handler: (req, res) ->
+        res.redirect 303, "https://www.youtube.com/watch?v=8DnKOc6FISU"
+      middleware: [
+        middleware.httpsRedirect
+      ]
+
+
 if module?
   module.exports = routes
