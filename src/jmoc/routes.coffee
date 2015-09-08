@@ -3,6 +3,7 @@
 # Node modules
 base64url = require 'base64url'
 crypto = require 'crypto'
+jiggle = require 'jiggle'
 validator = require 'validator'
 
 # Jmoc modules
@@ -128,10 +129,8 @@ mockify = (json) ->
         precision = numStr.length - decimalIndex - 1
         return random.toFixed precision
     when String
-      mid = Math.floor(json.length / 2)
-      start = Math.floor(Math.random() * mid)
-      end = mid + Math.floor(Math.random() * (json.length - mid + 1))
-      return json.slice start, end
+      messed = jiggle json.split /\s+/, 1000
+      return messed.join ' '
     when Boolean
       return Math.random() < 0.5
     when Array
