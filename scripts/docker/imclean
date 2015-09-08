@@ -4,13 +4,21 @@
 # This script might be called at the end of a long RUN command
 # If you remove the current WORKDIR, it should be the last step
 
-apt-get autoremove -y
-apt-get clean
-apt-get autoclean
+# Clean apt packages if --apt is specified
+if [ $1 = "--apt" ]; then
+    apt-get autoremove -y
+    apt-get clean
+    apt-get autoclean
+fi
+
+# Erase all logs
 find /var/log -type f | xargs -r truncate -s 0
+
+# Remove unnecessary files
 rm -rf \
     /var/lib/apt/lists/* \
     /var/cache/debconf/* \
     /var/tmp/* \
     /root/.cache \
+    /root/.npm \
     /tmp/*
