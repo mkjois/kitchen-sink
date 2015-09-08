@@ -29,6 +29,10 @@ You'll receive a response with key `Id`, a 16-digit base-64 value that represent
 
 I am a singular, thrifty human being trying to stay on as much of the AWS [free tier](https://aws.amazon.com/free/) as I can, so application servers are stateless and run the full Kitchen Sink suite.
 
+*Why is each service hosted on a top-level route instead of a subdomain?*
+
+This way I didn't need a multi-domain or wildcard SSL certificate, which are more expensive than one that covers a single domain.
+
 *Future plans?*
 
 No idea. Don't have that much free time so definitely nothing super extensive. If you've got an idea or question, create an appropriately labeled [issue](https://github.com/mkjois/kitchen-sink/issues) and I'll be happy to consider and respond.
