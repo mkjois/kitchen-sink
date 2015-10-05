@@ -5,6 +5,8 @@ By Manny Jois
 
 Whatever API microservices I come up with, written in [CoffeeScript](http://coffeescript.org/), compiled to [Node](https://nodejs.org/), contained by [Docker](https://www.docker.com/), deployed on [AWS](https://aws.amazon.com/).
 
+NOTE: As of 10/5/2015 the server will become indefinitely offline due to AWS costs (expired free tier usage)
+
 ***
 
 ## Jmoc
